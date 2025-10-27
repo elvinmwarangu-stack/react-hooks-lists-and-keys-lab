@@ -1,23 +1,25 @@
 import React from "react";
 import ProjectItem from "./ProjectItem";
 
-function ProjectList({ projects }) {
+export default function ProjectList({ projects }) {
+  // Log projects to the console for debugging
   console.log(projects);
+
+  // Render each project item inside the list
+  const projectItems = projects.map(({ id, name, about, technologies }) => (
+    <ProjectItem
+      key={id}
+      name={name}
+      about={about}
+      technologies={technologies}
+    />
+  ));
+
   return (
-    <div id="projects">
+    <section id="projects">
       <h2>My Projects</h2>
-      <div id="project-list">
-        {projects.map((project) => (
-           <ProjectItem
-          key={project.id}
-          name={project.name}
-          about={project.about}
-          technologies={project.technologies}
-        />
-      ))}
-      </div>
-    </div>
+      <div id="project-list">{projectItems}</div>
+    </section>
   );
 }
 
-export default ProjectList;
